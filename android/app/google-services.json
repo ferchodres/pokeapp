@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "118479827334",
+    "firebase_url": "https://pokebase-b0e25-default-rtdb.firebaseio.com",
+    "project_id": "pokebase-b0e25",
+    "storage_bucket": "pokebase-b0e25.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118479827334:android:33400b38815eda3cb27c07",
+        "android_client_info": {
+          "package_name": "com.example.poke_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118479827334-b3p59f68657posha4s4vdnkdasa85l5d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB4Og1TZ0vMwvAxSOxiXai5dzITdIR16c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118479827334-b3p59f68657posha4s4vdnkdasa85l5d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
