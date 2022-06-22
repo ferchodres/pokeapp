@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poke_app/entities/search_pokemon.dart';
+import 'package:poke_app/views/poke_card.dart';
 
 import '../dominie/coneccion_firebase.dart';
 import '../entities/pokelist.dart';
@@ -13,6 +14,7 @@ class ListViewPoke extends StatefulWidget {
 
 class _ListViewPoke extends State<ListViewPoke> {
   final conexion = FirebaseConnection();
+
   List<Pokemon> pokemon = [];
   @override
   Widget build(BuildContext context) {
@@ -60,26 +62,30 @@ class _ListViewPoke extends State<ListViewPoke> {
                         radius: 45,
                         backgroundColor: Colors.white))),
             onTap: () {
-              AlertDialog alert = AlertDialog(
-                title: Text(pokemon.name!),
-                content: Text(pokemon.name!),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                    child: const Text('Cancel'),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'OK'),
-                    child: const Text('OK'),
-                  ),
-                ],
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PokeCard(pokemon)),
               );
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return alert;
-                },
-              );
+              // AlertDialog alert = AlertDialog(
+              //   title: Text(pokemon.name!),
+              //   content: Text(pokemon.name!),
+              //   actions: <Widget>[
+              //     TextButton(
+              //       onPressed: () => Navigator.pop(context, 'Cancel'),
+              //       child: const Text('Cancel'),
+              //     ),
+              //     TextButton(
+              //       onPressed: () => Navigator.pop(context, 'OK'),
+              //       child: const Text('OK'),
+              //     ),
+              //   ],
+              // );
+              // showDialog(
+              //   context: context,
+              //   builder: (BuildContext context) {
+              //     return alert;
+              //   },
+              // );
             }),
       );
   void callDatabase() async {
@@ -87,7 +93,6 @@ class _ListViewPoke extends State<ListViewPoke> {
     if (pokemon.isEmpty) {
       setState(() {
         pokemon = response.pokemons!;
-        print(pokemon);
       });
     }
   }

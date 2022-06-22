@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:poke_app/crud/create.dart';
 import 'package:poke_app/views/list_view.dart';
+import 'package:poke_app/views/splash.dart';
 
 // void main() {
 //   runApp(const MyApp());
@@ -27,7 +28,6 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'material app',
-        //home: ListViewPoke()
-        home: CreateView());
+        home: Splash());
   }
 }

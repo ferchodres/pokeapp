@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:poke_app/entities/pokelist.dart';
 
+import '../views/poke_card.dart';
+
 class SearchPokemon extends SearchDelegate<Pokemon> {
   final List<Pokemon> pokemon;
   List<Pokemon> _filtrar = [];
@@ -36,14 +38,10 @@ class SearchPokemon extends SearchDelegate<Pokemon> {
                 backgroundImage: Image.network(_filtrar[index].image!).image,
                 backgroundColor: Colors.white),
             onTap: () {
-              AlertDialog alert = AlertDialog(
-                  title: Text(_filtrar[index].name!),
-                  content: Text(_filtrar[index].name!));
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return alert;
-                },
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PokeCard(_filtrar[index])),
               );
             },
           );
@@ -64,14 +62,10 @@ class SearchPokemon extends SearchDelegate<Pokemon> {
                 backgroundImage: Image.network(_filtrar[index].image!).image,
                 backgroundColor: Colors.white),
             onTap: () {
-              AlertDialog alert = AlertDialog(
-                  title: Text(_filtrar[index].name!),
-                  content: Text(_filtrar[index].name!));
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return alert;
-                },
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PokeCard(_filtrar[index])),
               );
             },
           );
