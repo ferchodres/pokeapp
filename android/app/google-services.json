@@ -30,6 +30,13 @@
             {
               "client_id": "118479827334-b3p59f68657posha4s4vdnkdasa85l5d.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "118479827334-m1cgiujkdh4gs0q2b1c7095dul8hk383.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pokeApp"
+              }
             }
           ]
         }
