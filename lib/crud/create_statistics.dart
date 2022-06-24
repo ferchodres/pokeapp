@@ -1,35 +1,30 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:poke_app/crud/create_statistics.dart';
 import 'package:poke_app/views/list_view.dart';
 
-class CreateView extends StatefulWidget {
-  const CreateView({Key? key}) : super(key: key);
+class CreateStatisticsView extends StatefulWidget {
+  const CreateStatisticsView({Key? key}) : super(key: key);
 
   @override
-  _CreateViewState createState() => _CreateViewState();
+  _CreateStaticticsState createState() => _CreateStaticticsState();
 }
 
-class _CreateViewState extends State<CreateView>{
+class _CreateStaticticsState extends State<CreateStatisticsView>{
   final _formkey = GlobalKey<FormState>() ;
-  TextEditingController savename = TextEditingController();
-  TextEditingController saveheight = TextEditingController();
-  TextEditingController saveweight = TextEditingController();
-  TextEditingController savedescript = TextEditingController();
-  TextEditingController saveurl = TextEditingController();
+  TextEditingController saveatack = TextEditingController();
+  TextEditingController savedefense = TextEditingController();
+  TextEditingController savevelocity = TextEditingController();
   late DatabaseReference _ref;
   var _id = 9;
 
 @override
 void initState() {
   super.initState();
-  savename = TextEditingController();
-  saveweight = TextEditingController();
-  savedescript = TextEditingController();
-  saveheight = TextEditingController();
-  saveurl = TextEditingController();
-  _ref = FirebaseDatabase.instance.ref("registros/registros");
-  _id++;
+  saveatack = TextEditingController();
+  savevelocity = TextEditingController();
+  savedefense = TextEditingController();
+    _id++;
+  _ref = FirebaseDatabase.instance.ref("registros/registros/$_id");
 }
 
 
@@ -47,6 +42,7 @@ void initState() {
         key: _formkey,
         child: Column(
           children: [
+            const SizedBox(height: 2, width: 20,),
             const Text("Nombre"),
 
             // form 1
@@ -56,7 +52,7 @@ void initState() {
                   return "Necesita un nombre";
                 }
               },
-              controller: savename,
+              controller: saveatack,
               maxLength: 40,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -67,13 +63,12 @@ void initState() {
             const Text("peso"),
             //form 2
             TextFormField(
-              //keyboardType: TextInputType.number,
               validator: (value) {
                 if (value!.isEmpty){
                   return "añade un peso";
                 }
               },
-              controller: saveweight,
+              controller: savevelocity,
               maxLength: 40,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -89,7 +84,7 @@ void initState() {
                   return "añade la altura";
                 }
               },
-              controller: saveheight,
+              controller: savedefense,
               maxLength: 255,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -97,46 +92,17 @@ void initState() {
               ),
             ),
 
-            //form 4
-            const Text("image"),
-            TextFormField(
-              controller: saveurl,
-              maxLength: 255,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "añade el link de una imagen"
-              ),
-            ),
-
-            //form 5
-            const Text("Drescripción"),
-            TextFormField(
-              controller: savedescript,
-              maxLength: 255,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Descripción"
-              ),
-            ),
 
             ElevatedButton(
               onPressed: (){
                 if(!_formkey.currentState!.validate()){
-                  //return print("saved" + savename.text); 
+                  //return print("saved" + saveatack.text); 
                 }
                 _formkey.currentState!.save();
-                _ref.child(_id.toString()).set({
-                                "name": savename.text, 
-                                "description":savedescript.text,
-                                "height": double.parse(saveheight.text),
-                                "weight": double.parse(saveweight.text),
-                                "image":"https://images.wikidexcdn.net/mwuploads/wikidex/thumb/f/ff/latest/20200825140315/Zorua.png/1200px-Zorua.png",
-                                "statistics":{"attack":double.parse("0"),
-                                              "defense":double.parse("0"),
-                                              "velocity":double.parse("0")},
-                                "type":{"0":"algo"},
-                                "weakneseses":{"0":"esto",
-                                                "1":"lo otro"},
+                _ref.child("statistics").set({
+                                "attack": double.parse(saveatack.text), 
+                                "defense":double.parse(savedefense.text),
+                                "weight": double.parse(savedefense.text),
                                 }).then(
                                   (value) => Navigator.push(
                                     context, MaterialPageRoute(
