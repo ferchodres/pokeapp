@@ -1,5 +1,6 @@
 import 'package:avatars/avatars.dart';
 import 'package:flutter/material.dart';
+import 'package:poke_app/crud/create.dart';
 import 'package:poke_app/views/profiles.dart';
 
 import 'list_view.dart';
@@ -69,7 +70,7 @@ class Home extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const ListViewPoke()),
+                                    builder: (context) => const CreateView()),
                               );
                             }
                             if (pokemon[index]["name"] == 'Profile') {
